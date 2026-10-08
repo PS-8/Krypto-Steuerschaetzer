@@ -1,4 +1,4 @@
-## 🪙 Krypto-Steuerschätzer
+## ₿ Krypto-Steuerschätzer
 
 Kostenloses und unverbindliches Privat-Webtool zur Schätzung und Orientierung bezüglich der Steuereffekte von Kryptowährungstransaktionen. 
 
