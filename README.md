@@ -1,2 +1,2 @@
-# Krypto-Steuersch-tzer
+# Krypto-Steuerschaetzer
 asdf
