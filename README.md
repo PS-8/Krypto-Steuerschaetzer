@@ -2,7 +2,7 @@
 
 Kostenloses und unverbindliches Privat-Webtool zur Abschätzung und Orientierung bezüglich der Steuereffekte von Kryptowährungstransaktionen. 
 
-Dieses Repo bietet eine benutzerfreundliche Oberfläche, um potenzielle Steuerlasten auf Basis eingegebener Gewinne, Haltedauern und Freibeträge schnell abzuschätzen.
+Dieses Werkzeug ermöglicht eine benutzerfreundliche Oberfläche, um Steuerlasten auf Basis eingegebener Gewinne, Haltedauern und Freibeträge schnell abzuschätzen.
 
 ---
 
