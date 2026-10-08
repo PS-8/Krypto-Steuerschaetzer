@@ -20,7 +20,7 @@ Sämtliche Ausgaben sind Richtwerte, die auf vereinfachten Modellrechnungen und 
 
 ---
 
-## 🚀 Funktionen
+## 🚀 Features
 
 * **Schnelle Berechnung:** Sofortige Rückmeldung über geschätzte Steuerbeträge.
 * **Benutzerfreundliches UI:** Klare und responsive Benutzeroberfläche (HTML, CSS, JS).
