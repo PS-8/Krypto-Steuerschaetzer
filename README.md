@@ -8,6 +8,7 @@ Dieses Repo bietet eine benutzerfreundliche Oberfläche, um potenzielle Steuerla
 
 ## 🏞️ Screenshot
 
+![Screenshot](first.jpg)
 
 ---
 
