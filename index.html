@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unverbindliche Krypto-Steuerschätzung (Deutschland)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="header-container">
+      <div class="logo-icon">₿</div>
+      <div>
+        <h1>Krypto-Steuerschätzer Deutschland</h1>
+        <p class="subtitle">Unverbindliche Orientierungshilfe nach EStG, BMF-Schreiben & KStTG (DAC8)</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-container">
+
+    <!-- Eingabe-Formular -->
+    <section class="card form-card">
+      <h2>1. Schätzdaten zu Transaktionen & Erträgen</h2>
+      <form id="crypto-form">
+
+        <!-- Anschaffungsjahr & Regelungsrahmen -->
+        <div class="form-group">
+          <label for="purchase-year">Anschaffung / Erwerbszeitpunkt (Planung)</label>
+          <select id="purchase-year">
+            <option value="2026" selected>Bis 31.12.2026 (Altbestand / Pers. Steuersatz & 1-Jahres-Frist)</option>
+            <option value="2027">Ab 01.01.2027 (Geplante Abgeltungsteuer 25 %)</option>
+          </select>
+          <small class="help-text">Hinweis: Ab 2027 greift voraussichtlich die pauschale Abgeltungsteuer für Neubestände.</small>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="short-term-gains">Geschätzte Gewinne (&lt; 12 Monate)</label>
+            <div class="input-wrapper">
+              <input type="number" id="short-term-gains" min="0" step="0.01" value="0.00">
+              <span class="currency">€</span>
+            </div>
+            <small class="help-text">Veräußerung innerhalb 1 Jahr (§ 23 Abs. 1 Nr. 2 EStG)</small>
+          </div>
+
+          <div class="form-group">
+            <label for="short-term-losses">Geschätzte Verluste (&lt; 12 Monate)</label>
+            <div class="input-wrapper">
+              <input type="number" id="short-term-losses" min="0" step="0.01" value="0.00">
+              <span class="currency">€</span>
+            </div>
+            <small class="help-text">Anrechenbar nur mit § 23 Gewinnen (§ 23 Abs. 3 EStG)</small>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="long-term-gains">Geschätzte Gewinne (&gt; 12 Monate)</label>
+            <div class="input-wrapper">
+              <input type="number" id="long-term-gains" min="0" step="0.01" value="0.00">
+              <span class="currency">€</span>
+            </div>
+            <small class="help-text">Ablauf der 1-Jahres-Haltefrist (§ 23 EStG)</small>
+          </div>
+
+          <div class="form-group">
+            <label for="loss-carryforward">Verlustvortrag aus Vorjahren</label>
+            <div class="input-wrapper">
+              <input type="number" id="loss-carryforward" min="0" step="0.01" value="0.00">
+              <span class="currency">€</span>
+            </div>
+            <small class="help-text">Unverrechnete Verluste nach § 23 Abs. 3 Satz 8 EStG</small>
+          </div>
+        </div>
+
+        <hr class="divider">
+
+        <h2>2. Laufende Erträge (Staking, Lending & Mining)</h2>
+
+        <div class="form-group">
+          <label for="income-rewards">Geschätzte Zuflüsse (Staking / Lending / Mining)</label>
+          <div class="input-wrapper">
+            <input type="number" id="income-rewards" min="0" step="0.01" value="0.00">
+            <span class="currency">€</span>
+          </div>
+          <small class="help-text">Marktwert im Zuflusszeitpunkt (§ 22 Nr. 3 EStG / BMF 06.03.2025)</small>
+        </div>
+
+        <hr class="divider">
+
+        <h2>3. Persönliche Richtwerte</h2>
+
+        <div class="form-group">
+          <label for="tax-rate">Geschätzter persönlicher Grenzsteuersatz</label>
+          <div class="input-wrapper">
+            <input type="number" id="tax-rate" min="0" max="45" step="0.1" value="30.0">
+            <span class="currency">%</span>
+          </div>
+          <small class="help-text">Grenzsteuersatz zzgl. ggf. Soli/Kirchensteuer (§ 32a EStG)</small>
+        </div>
+
+        <button type="button" id="calc-btn" class="btn-primary">Unverbindliche Schätzung aktualisieren</button>
+      </form>
+    </section>
+
+    <!-- Ergebnisse -->
+    <section class="card result-card">
+      <h2>Ergebnis der unverbindlichen Schätzung</h2>
+
+      <div class="summary-box">
+        <span class="summary-label">Geschätzte Richtwert-Steuerlast</span>
+        <span class="summary-value" id="total-tax">0,00 €</span>
+      </div>
+
+      <div class="result-breakdown">
+        
+        <div class="result-item">
+          <div class="result-header">
+            <h3>Private Veräußerungsgeschäfte</h3>
+            <span class="badge">§ 23 EStG</span>
+          </div>
+          <div class="result-row">
+            <span>Geschätzter Netto-Gewinn (Kurzfristig):</span>
+            <strong id="res-short-net">0,00 €</strong>
+          </div>
+          <div class="result-row">
+            <span>Angerechneter Verlustvortrag:</span>
+            <strong id="res-loss-used">0,00 €</strong>
+          </div>
+          <div class="result-row">
+            <span>Freigrenze angewendet (&lt; 1.000 €):</span>
+            <strong id="res-freigrenze-23">Nein</strong>
+          </div>
+          <div class="result-row highlight">
+            <span>Geschätzte Steuerbasis (§ 23):</span>
+            <strong id="res-taxable-23">0,00 €</strong>
+          </div>
+        </div>
+
+        <div class="result-item">
+          <div class="result-header">
+            <h3>Sonstige Einkünfte (Staking/Lending)</h3>
+            <span class="badge">§ 22 Nr. 3 EStG</span>
+          </div>
+          <div class="result-row">
+            <span>Geschätzter Zuflusswert:</span>
+            <strong id="res-rewards-gross">0,00 €</strong>
+          </div>
+          <div class="result-row">
+            <span>Freigrenze angewendet (&lt; 256 €):</span>
+            <strong id="res-freigrenze-22">Nein</strong>
+          </div>
+          <div class="result-row highlight">
+            <span>Geschätzte Steuerbasis (§ 22):</span>
+            <strong id="res-taxable-22">0,00 €</strong>
+          </div>
+        </div>
+
+        <div class="result-item neutral">
+          <div class="result-header">
+            <h3>Voraussichtlich steuerfreie Krypto-Gewinne</h3>
+            <span class="badge success">Freigestellt</span>
+          </div>
+          <div class="result-row">
+            <span>Langfristige Veräußerungen (&gt; 12 Monate):</span>
+            <strong id="res-taxfree-long">0,00 €</strong>
+          </div>
+          <div class="result-row">
+            <span>Unter Freigrenzen verblieben:</span>
+            <strong id="res-taxfree-freigrenze">0,00 €</strong>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- DAC8 Transparenz-Hinweis -->
+      <div class="info-banner">
+        <strong>Meldepflicht &amp; Datenaustausch (DAC8 / KStTG):</strong>
+        <p>Seit dem 01.01.2026 übermitteln EU-Krypto-Dienstleister Daten automatisch an Finanzbehörden. Alle Berechnungen im Tool dienen lediglich als eigene Orientierung vor der offiziellen Steuererklärung.</p>
+      </div>
+
+      <!-- Rechtssicherer Haftungsausschluss -->
+      <div class="disclaimer-box">
+        <h4>Rechtlicher Haftungsausschluss (Unverbindliche Schätzung)</h4>
+        <p>
+          Dieses Tool ist ein reines Demonstrations- und Informationswerkzeug und liefert **ausschließlich eine unverbindliche Orientierungsschätzung**. Es stellt ausdrücklich **keine Steuerberatung, Rechtsberatung oder finanzielle Auskunft** dar und ersetzt keinesfalls die individuelle Beratung durch einen Steuerberater.
+        </p>
+        <p>
+          Sämtliche Ausgaben sind Richtwerte, die auf vereinfachten Modellrechnungen und den vom Nutzer eingegebenen Daten basieren. Es werden keine Gewähr, Haftung oder Vollständigkeitsgarantie für die steuerliche Richtigkeit, Aktualität oder die Anerkennung durch die Finanzbehörden übernommen.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
