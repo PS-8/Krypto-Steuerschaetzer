@@ -1,6 +1,6 @@
 # 🪙 Krypto-Steuerschätzer
 
-Ein einfaches und übersichtliches Web-Tool zur Schätzung und Orientierung bezüglich der steuerlichen Auswirkungen von Kryptowährungstransaktionen. 
+Kostenloses und unverbindliches Hobby-Web-Tool zur Schätzung und Orientierung bezüglich der Steuereffekte von Kryptowährungstransaktionen. 
 
 Dieses Repository bietet eine benutzerfreundliche Oberfläche, um potenzielle Steuerlasten auf Basis eingegebener Gewinne, Haltedauern und Freibeträge schnell abzuschätzen.
 
