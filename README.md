@@ -1,6 +1,6 @@
 ## ₿ Krypto-Steuerschätzer
 
-Kostenloses und unverbindliches Privat-Webtool zur Schätzung und Orientierung bezüglich der Steuereffekte von Kryptowährungstransaktionen. 
+Kostenloses und unverbindliches Privat-Webtool zur Abschätzung und Orientierung bezüglich der Steuereffekte von Kryptowährungstransaktionen. 
 
 Dieses Repo bietet eine benutzerfreundliche Oberfläche, um potenzielle Steuerlasten auf Basis eingegebener Gewinne, Haltedauern und Freibeträge schnell abzuschätzen.
 
